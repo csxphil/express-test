@@ -1,0 +1,14 @@
+# node packages
+node_modules/
+npm-debug.log
+
+# WebStorm files
+.idea/
+
+# files edited by gedit
+*~
+
+# vim temp files
+*.swp
+*.swo
+
