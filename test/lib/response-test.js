@@ -1,5 +1,5 @@
-var createRequest = require('../../lib/request')
-  , createResponse = require('../../lib/response')
+var request = require('../../lib/request')
+  , response = require('../../lib/response')
   , should = require('should');
 
 describe('response', function() {
@@ -7,19 +7,19 @@ describe('response', function() {
   var req = null;
   beforeEach(function() {
     app = {get: 'fake'};
-    req = createRequest();
+    req = request.create();
   });
   describe('createResponse', function() {
     it ('sets the app field', function() {
-      createResponse(req, app).app.should.equal(app);
+      response.create(req, app).app.should.equal(app);
     });
     it ('sets the req field', function() {
-      createResponse(req, app).req.should.equal(req);
+      response.create(req, app).req.should.equal(req);
     });
   });
   describe('response#end()', function() {
     it ('sets the body field', function() {
-      var res = createResponse(req, app);
+      var res = response.create(req, app);
       res.end('new body');
       res.body.should.equal('new body');
     });
