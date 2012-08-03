@@ -99,6 +99,13 @@ describe('request', function() {
       req.search = '?field=old'
       req.request('post', '/theUrl').search.should.equal('?field=old');
     });
+    it('sets the query if the url contains one', function() {
+      req.request('post', '/theUrl?field=val').query.field.should.equal('val');
+    });
+    it('ignores the query if the url doesnt contain one', function() {
+      req.query = {field:'old'};
+      req.request('post', '/theUrl').query.field.should.equal('old');
+    });
   });
   describe('request#end()', function() {
     beforeEach(function() {
@@ -168,13 +175,13 @@ describe('request', function() {
     });
   });
   describe('express parsing', function() {
-    // it('parses the parameters', function(done) {
-    //   app.get('/test/:resource/:id', function(req, res) {
-    //     param.resource.should.equal('foo');
-    //     param.id.should.equal('bar');
-    //     done();
-    //   });
-    //   req.get('/test/foo/bar').end();
-    // });
+    it('parses the parameters', function(done) {
+      app.get('/test/:resource/:id', function(req, res) {
+        req.params.resource.should.equal('foo');
+        req.params.id.should.equal('bar');
+        done();
+      });
+      req.get('/test/foo/bar').end();
+    });
   });
 });
