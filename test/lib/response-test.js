@@ -1,5 +1,6 @@
 var request = require('../../lib/request')
   , response = require('../../lib/response')
+  , http = require('http')
   , should = require('should');
 
 describe('response', function() {
@@ -8,6 +9,24 @@ describe('response', function() {
   beforeEach(function() {
     app = {get: 'fake'};
     req = request.create();
+  });
+  it ('doesnt break http response', function(done) {
+    var server = http.createServer(function(req, res) {
+      res.end('hello');
+    });
+    server.listen(3000, 'localhost', function() {
+      http.request({host: 'localhost', port: 3000}, function(res) {
+        var body = '';
+        res.setEncoding('utf8');
+        res.on('data', function(chunk) {
+          body += chunk;
+        });
+        res.on('end', function() {
+          body.should.equal('hello');
+          done();
+        });
+      }).end();
+    });
   });
   describe('createResponse', function() {
     it ('sets the app field', function() {
