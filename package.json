@@ -9,6 +9,9 @@
       "email": "dmcaulay@3vr.com"
     }
   ],
+  "scripts": {
+    "test": "bin/test"
+  },
   "repository": {
     "type":"git",
     "url": "https://github.com/3vr/express-test"
