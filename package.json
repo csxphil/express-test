@@ -1,7 +1,7 @@
 {
   "name": "express-test",
   "description": "helper library for testing express apps",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "3VR",
   "contributors": [
     {
