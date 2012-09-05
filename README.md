@@ -26,7 +26,7 @@ require('express-test');
 
 var app = express.createServer();
 
-// require the route your going to test
+// require the route you're going to test
 require('./routes/hello')(app);
 
 // test the body
