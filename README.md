@@ -27,7 +27,7 @@ require('express-test');
 var app = express.createServer();
 
 // require the route your going to test
-require('./routes/hello)(app);
+require('./routes/hello')(app);
 
 app.request().get('/hello').end()
 .verify(function(res) {
