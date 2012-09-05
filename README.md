@@ -36,7 +36,7 @@ app.request().get('/hello').end()
 });
 
 // set sinon expectations on the response mock
-app.request().get('/hello').end(function() {
+app.request().get('/hello').end(function(res) {
   res.expects('send').once();
 }).verify();
 ```
